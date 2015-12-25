@@ -1,0 +1,71 @@
+diff -rB linux-clone-backup/arch/arm/mach-bcm2708/bcm2708.c linux-lcd-correct/arch/arm/mach-bcm2708/bcm2708.c
+355a356,360
+> static struct platform_device bcm2708_ili9341= {
+> 	.name = "ili9341",
+> 	.id = 0,
+> };
+> 
+606c611
+< 	}, {
+---
+> 	}/*, {
+610c615
+< 	}
+---
+> 	}*/
+626c631
+< 	}, {
+---
+> 	}/*, {
+630c635
+< 	}
+---
+> 	}*/
+903a909
+> 	bcm_register_device(&bcm2708_ili9341);
+
+diff -rB linux-clone-backup/arch/arm/mach-bcm2709/bcm2709.c linux-lcd-correct/arch/arm/mach-bcm2709/bcm2709.c
+366a367,371
+> static struct platform_device bcm2708_ili9341= {
+> 	.name = "ili9341",
+> 	.id = 0,
+> };
+> 
+627c632
+< 	}, {
+---
+> 	}/*, {
+631c636
+< 	}
+---
+> 	}*/
+647c652
+< 	}, {
+---
+> 	}/*, {
+651c656
+< 	}
+---
+> 	}*/
+924a930
+> 	bcm_register_device(&bcm2708_ili9341);
+
+diff -rB linux-clone-backup/drivers/video/fbdev/Kconfig linux-lcd-correct/drivers/video/fbdev/Kconfig
+240a241,253
+> config FB_ILI9341
+> 	tristate "ILI9341 connected to Raspberry Pi GPIO support"
+> 	depends on FB
+> 	select FB_SYS_FILLRECT
+> 	select FB_SYS_COPYAREA
+> 	select FB_SYS_IMAGEBLIT
+> 	select FB_SYS_FOPS
+> 	select FB_DEFERRED_IO
+> 	help
+> 	  This driver implements a framebuffer on an LCD controlled by a
+> 	  ILI9341 (or compatible) controller connected to the GPIO of the 
+> 	  Raspberry Pi.
+> 
+
+diff -rB linux-clone-backup/drivers/video/fbdev/Makefile linux-lcd-correct/drivers/video/fbdev/Makefile
+132a133
+> obj-$(CONFIG_FB_ILI9341)	  += ili9341.o
